@@ -129,5 +129,72 @@ class ClienteController extends Controller
             'message' => "Cliente excluido com sucesso"
         ]);
     }
+    public function procurarPorCpf(Request $request){
+       
+        $clientes = Cliente::where('cpf', 'like', '%' . $request->cpf . '%')->get();
+        if (count($clientes) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $clientes
+            ]);
+        }
+
+
+        return response()->json([
+            'status' => false,
+            'message' => "Não há resultados para pesquisar"
+        ]);
+    }
+    public function procurarPorCelular(Request $request){
+       
+        $clientes = Cliente::where('celular', 'like', '%' . $request->celular . '%')->get();
+        if (count($clientes) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $clientes
+            ]);
+        }
+
+
+        return response()->json([
+            'status' => false,
+            'message' => "Não há resultados para pesquisar"
+        ]);
+    }
+    public function procurarPorEmail(Request $request){
+       
+        $clientes = Cliente::where('email', 'like', '%' . $request->email . '%')->get();
+        if (count($clientes) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $clientes
+            ]);
+        }
+
+
+        return response()->json([
+            'status' => false,
+            'message' => "Não há resultados para pesquisar"
+        ]);
+    }
+    public function recuperarSenha(Request $request){
+        $clientes = Cliente::where('cpf', 'like', '%' . $request->cpf . '%')->get();
+
+       if (!isset($clientes)) {
+            return response()->json([
+                'status' => false,
+                'massage' => "Cliente não encontrado"
+            ]);
+        }
+        if (isset($request->password)){
+            $clientes->password = $request->password;
+        }
+
+        $clientes->update();
+        return response()->json([
+            'status' => true,
+            'message' => "Senha atualizado"
+        ]);
+    }
 
 }
