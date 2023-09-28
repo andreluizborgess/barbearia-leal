@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('servicos', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 80)->unique()->nullable(false);
-            $table->string('descrição', 200)->nullable(true);
-            $table->string('duração',)->unique()->nullable(false);
+            $table->string('descricao', 200)->nullable(true);
+            $table->string('duracao',)->unique()->nullable(false);
             $table->string('preco',)->nullable(false);
             $table->timestamps();
         });

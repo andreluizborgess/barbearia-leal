@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('celular', 200)->nullable(true);
             $table->string('email',)->unique()->nullable(false);
             $table->string('cpf',)->unique()->nullable(false);
-            $table->string('data de nascimento',)()->nullable(false);
+            $table->string('dataDeNascimento')->nullable(false);
             $table->string('cidade',)->nullable(false);
             $table->string('estado',)->nullable(false);
-            $table->string('país',)->nullable(false);
+            $table->string('pais',)->nullable(false);
             $table->string('rua',)->nullable(false);
             $table->string('numero',)->nullable(false);
             $table->string('bairro',)->nullable(false);

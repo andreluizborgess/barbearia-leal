@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ServicoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -14,14 +15,23 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+//serviço
 Route::post('servico', [ServicoController::class, "Servico"]);
 
-route::post('cliente',[ClienteController::class,'clienteCreate']);
+Route::post('editar', [ServicoController::class, "editar"]);
+
+Route::post('find/serviço', [ServicoController::class, "pesquisaPorNome"]);
+
+Route::post('serviço/all', [ServicoController::class, "exibirServico"]);
+
+Route::delete('serviço/excluir/{id}', [ServicoController::class, "delete"]);
+
+//clientes
+route::post('cliente',[ClienteController::class,'cadastro']);
 
 route::post('find/cliente',[ClienteController::class, 'procurarPorNome']);
 
-route::post('cliente/all',[ClienteController::class, 'exibirTodosClientes']);
+route::post('cliente/all',[ClienteController::class, 'exibirTodos']);
 
 route::post('editar/cliente',[ClienteController::class, 'editarCliente']);
 

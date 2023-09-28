@@ -25,8 +25,8 @@ class ServicoFormRequest extends FormRequest
     {
         return [
             'nome' => 'required|max:90|min:5',
-            'descrição' => 'required|max:200|min:10',
-            'duração' => 'required|integer',
+            'descricao' => 'required|max:200|min:10',
+            'duracao' => 'required|integer',
             'preco' => 'required|decimal:2'
         ];
     }

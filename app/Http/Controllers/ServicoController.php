@@ -13,8 +13,8 @@ class ServicoController extends Controller
     {
         $servicos = Servico::create([
             'nome' => $request->nome,
-            'descrição' => $request->descrição,
-            'duração' => $request->duração,
+            'descricao' => $request->descricao,
+            'duracao' => $request->duracao,
             'preco' => $request->preco,
         ]);
         return response()->json([
@@ -25,11 +25,11 @@ class ServicoController extends Controller
     }
     public function pesquisaPorNome()
     {
-        $usuarios = Servico::where('nome', 'like', '%')->get();
-        if (count($usuarios) > 0) {
+        $servicos = Servico::where('nome', 'like', '%')->get();
+        if (count($servicos) > 0) {
             return response()->json([
                 'status' => true,
-                'data' => $usuarios
+                'data' => $servicos
             ]);
         }
         return response()->json([
@@ -38,17 +38,17 @@ class ServicoController extends Controller
         ]);
     }
     public function exibirServico(){
-        $usuario = Servico::all();
+        $servicos = Servico::all();
         return response()->json([
 'status'=> true,
-'data'=>$usuario
+'data'=>$servicos
         ]);
     }
 
         public function editar(Request $request){
-        $usuario = Servico::find($request->id);
+        $servicos = Servico::find($request->id);
 
-        if(!isset($usuario)){
+        if(!isset($servicos)){
             return response()->json([
                 'status'=> false,
                 'message'=>"serviço nao encontrado"
@@ -56,32 +56,32 @@ class ServicoController extends Controller
         }
         
         if(isset($request->nome)){
-            $usuario->nome = $request->nome;
+            $servicos->nome = $request->nome;
         }
         if(isset($request->descricao)){
-            $usuario->descricao = $request->descricao;
+            $servicos->descricao = $request->descricao;
         }
         if(isset($request->duracao)){
-            $usuario->duracao = $request->duracao;
+            $servicos->duracao = $request->duracao;
         }
         if(isset($request->preco)){
-            $usuario->preco = $request->preco;
+            $servicos->preco = $request->preco;
         }
-        $usuario->update();
+        $servicos->update();
         return response()->json([
             'status'=>false,
             'message'=>"serviço atualizado"
         ]);
 }
 public function excluir($id){
-    $usuario = Servico::find($id);
-    if(!isset($usuario)){
+    $servicos = Servico::find($id);
+    if(!isset($servicos)){
         return response()->json([
             'status'=>false,
             'message'=>"serviço nao encontrado"
         ]);
     }
-    $usuario->delete();
+    $servicos->delete();
     return response()->json([
         'status'=>true,
         'message'=>"servico excluido"

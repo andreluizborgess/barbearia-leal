@@ -6,16 +6,17 @@ use App\Http\Requests\ClienteFormRequest;
 use App\Models\Cliente;
 use COM;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
     public function cadastro(ClienteFormRequest $request){
-        $cadastros = Cliente::create([
+        $clientes = Cliente::create([
             'nome' => $request->nome,
             'celular' => $request->celular,
             'email' => $request->email,
             'cpf' => $request->cpf,
-            'data de nascimento'=> $request->dataDeNascimento,
+            'dataDeNascimento'=> $request->dataDeNascimento,
             'cidade'=>$request->cidade,
             'estado'=>$request->estado,
             'pais'=>$request->pais,
@@ -24,21 +25,21 @@ class ClienteController extends Controller
             'bairro'=>$request->bairro,            
             'cep'=>$request->cep,
             'complemento'=>$request->complemento,
-            'password'=>$request->password
+            'senha'=> Hash::make($request->senha)
 
         ]);
         return response()->json([
             "sucess" => true,
             "message" => "cliente cadastrado com sucesso",
-            "data"    => $cadastros
+            "data"    => $clientes
         ], 200);
     }
     public function pesquisaPorNome(Request $request){
-        $cadastros = Cliente::where('nome', 'like', '%' . $request->nome)->get();
-        if (count($cadastros) > 0) {
+        $clientes = Cliente::where('nome', 'like', '%' . $request->nome)->get();
+        if (count($clientes) > 0) {
             return response()->json([
                 'status' => true,
-                'data' => $cadastros
+                'data' => $clientes
             ]);
         }
         return response()->json([

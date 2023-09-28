@@ -13,7 +13,7 @@ class ClienteFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,10 +29,10 @@ class ClienteFormRequest extends FormRequest
             'celular' => 'required|max:11|min:10',
             'email' => 'required|max:120',
             'cpf' => 'required|max:11|min:11',
-            'data de nascimento' => 'required|date',
+            'dataDeNascimento' => 'required',
             'cidade' => 'required|max:120',
             'estado' => "required|max:2|min:2",
-            'país' => 'required|max:80',
+            'pais' => 'required|max:80',
             'rua' => 'required|max:120',
             'numero' => 'required|max:10',
             'bairro' => 'required|max:100',
@@ -67,8 +67,8 @@ class ClienteFormRequest extends FormRequest
             'estado.required' => 'campo obrigatorio',
             'estado.max'=> 'o campo deve conter no maximo 2 caracteres',
             'estado.min'=> 'o campo deve conter no minimo 2 caracteres',
-            'país.required'=> 'campo obrigatorio',
-            'país.max'=> 'o campo deve conter no maximo 80 caracteres',
+            'pais.required'=> 'campo obrigatorio',
+            'pais.max'=> 'o campo deve conter no maximo 80 caracteres',
             'rua.required'=> 'campo obrigatorio',
             'rua.max'=> 'o campo deve conter no maximo 120 caracteres ',
             'numero.required'=> 'campo obrigatorio',
