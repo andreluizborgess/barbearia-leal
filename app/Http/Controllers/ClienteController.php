@@ -10,22 +10,23 @@ use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
-    public function cadastro(ClienteFormRequest $request){
+    public function cadastro(ClienteFormRequest $request)
+    {
         $clientes = Cliente::create([
             'nome' => $request->nome,
             'celular' => $request->celular,
             'email' => $request->email,
             'cpf' => $request->cpf,
-            'dataDeNascimento'=> $request->dataDeNascimento,
-            'cidade'=>$request->cidade,
-            'estado'=>$request->estado,
-            'pais'=>$request->pais,
-            'rua'=>$request->rua,
-            'numero'=>$request->numero,
-            'bairro'=>$request->bairro,            
-            'cep'=>$request->cep,
-            'complemento'=>$request->complemento,
-            'senha'=> Hash::make($request->senha)
+            'dataDeNascimento' => $request->dataDeNascimento,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
+            'pais' => $request->pais,
+            'rua' => $request->rua,
+            'numero' => $request->numero,
+            'bairro' => $request->bairro,
+            'cep' => $request->cep,
+            'complemento' => $request->complemento,
+            'senha' => Hash::make($request->senha)
 
         ]);
         return response()->json([
@@ -34,7 +35,8 @@ class ClienteController extends Controller
             "data"    => $clientes
         ], 200);
     }
-    public function pesquisaPorNome(Request $request){
+    public function pesquisaPorNome(Request $request)
+    {
         $clientes = Cliente::where('nome', 'like', '%' . $request->nome)->get();
         if (count($clientes) > 0) {
             return response()->json([
@@ -47,12 +49,13 @@ class ClienteController extends Controller
             'message' => 'nao ha resultados para pesquisar'
         ]);
     }
-    public function exibirTodos(){
+    public function exibirTodos()
+    {
         $clientes = Cliente::all();
         return response()->json([
-'status' => true,
-'data'=>$clientes
-        ]); 
+            'status' => true,
+            'data' => $clientes
+        ]);
     }
     public function editarCliente(Request $request)
     {
@@ -67,43 +70,43 @@ class ClienteController extends Controller
         if (isset($request->nome)) {
             $clientes->nome = $request->nome;
         }
-        if (isset($request->celular)){
+        if (isset($request->celular)) {
             $clientes->celular = $request->celular;
         }
-        if (isset($request->email)){
+        if (isset($request->email)) {
             $clientes->email = $request->email;
         }
-        if (isset($request->cpf)){
+        if (isset($request->cpf)) {
             $clientes->cpf = $request->cpf;
         }
-        if (isset($request->dataNacimento)){
+        if (isset($request->dataNacimento)) {
             $clientes->dataNacimento = $request->dataNacimento;
         }
-        if (isset($request->cidade)){
+        if (isset($request->cidade)) {
             $clientes->cidade = $request->cidade;
         }
-        if (isset($request->estado)){
+        if (isset($request->estado)) {
             $clientes->estado = $request->estado;
         }
-        if (isset($request->pais)){
+        if (isset($request->pais)) {
             $clientes->pais = $request->pais;
         }
-        if (isset($request->rua)){
+        if (isset($request->rua)) {
             $clientes->rua = $request->rua;
         }
-        if (isset($request->numero)){
+        if (isset($request->numero)) {
             $clientes->numero = $request->numero;
         }
-        if (isset($request->bairro)){
+        if (isset($request->bairro)) {
             $clientes->bairro = $request->bairro;
         }
-        if (isset($request->cep)){
+        if (isset($request->cep)) {
             $clientes->cep = $request->cep;
         }
-        if (isset($request->complemeto)){
+        if (isset($request->complemeto)) {
             $clientes->complemeto = $request->complemeto;
         }
-        if (isset($request->password)){
+        if (isset($request->password)) {
             $clientes->password = $request->password;
         }
 
@@ -113,7 +116,7 @@ class ClienteController extends Controller
             'message' => "Cliente atualizado"
         ]);
     }
-    public function excluirCliente($id)
+    public function excluir($id)
     {
         $clientes = Cliente::find($id);
 
@@ -130,8 +133,9 @@ class ClienteController extends Controller
             'message' => "Cliente excluido com sucesso"
         ]);
     }
-    public function procurarPorCpf(Request $request){
-       
+    public function procurarPorCpf(Request $request)
+    {
+
         $clientes = Cliente::where('cpf', 'like', '%' . $request->cpf . '%')->get();
         if (count($clientes) > 0) {
             return response()->json([
@@ -146,8 +150,9 @@ class ClienteController extends Controller
             'message' => "Não há resultados para pesquisar"
         ]);
     }
-    public function procurarPorCelular(Request $request){
-       
+    public function procurarPorCelular(Request $request)
+    {
+
         $clientes = Cliente::where('celular', 'like', '%' . $request->celular . '%')->get();
         if (count($clientes) > 0) {
             return response()->json([
@@ -162,8 +167,9 @@ class ClienteController extends Controller
             'message' => "Não há resultados para pesquisar"
         ]);
     }
-    public function procurarPorEmail(Request $request){
-       
+    public function procurarPorEmail(Request $request)
+    {
+
         $clientes = Cliente::where('email', 'like', '%' . $request->email . '%')->get();
         if (count($clientes) > 0) {
             return response()->json([
@@ -178,16 +184,17 @@ class ClienteController extends Controller
             'message' => "Não há resultados para pesquisar"
         ]);
     }
-    public function recuperarSenha(Request $request){
+    public function recuperarSenha(Request $request)
+    {
         $clientes = Cliente::where('cpf', 'like', '%' . $request->cpf . '%')->get();
 
-       if (!isset($clientes)) {
+        if (!isset($clientes)) {
             return response()->json([
                 'status' => false,
                 'massage' => "Cliente não encontrado"
             ]);
         }
-        if (isset($request->password)){
+        if (isset($request->password)) {
             $clientes->password = $request->password;
         }
 
@@ -197,5 +204,4 @@ class ClienteController extends Controller
             'message' => "Senha atualizado"
         ]);
     }
-
 }
