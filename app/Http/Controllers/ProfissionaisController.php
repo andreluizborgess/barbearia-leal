@@ -200,4 +200,5 @@ public function procurarPorCpf(Request $request)
             'message' => "Não há resultados para pesquisar"
         ]);
     }
+    
 }
