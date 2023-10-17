@@ -9,11 +9,11 @@ class Agenda extends Model
 {
     use HasFactory;
     protected $fillabe =[
-        'profissional_id',
+        'profissionais_id',
         'cliente_id',
         'servico_id',
-        'data-hora',
-        'pagamento',
+        'data_hora',
+        'tipo_pagamento',
         'valor'
     ];
 }

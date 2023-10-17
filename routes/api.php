@@ -59,6 +59,9 @@ route::delete('excluirProfissionais/{id}',[ProfissionaisController::class, 'excl
 
 route::post('pesquisarProfissionaisNome',[ProfissionaisController::class, 'pesquisarPorNome']);
 
+//////////////////////////////// AGENDA PORRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+
 
 
 
