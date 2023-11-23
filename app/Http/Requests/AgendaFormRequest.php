@@ -24,39 +24,31 @@ class AgendaFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'profissionais_id' => 'required|',
-            'cliente_id' => 'required|',
-            'servico_id' => 'required|',
-            'data_hora' => 'required|',
-            'tipo_pagamento' => 'required|max:20|min:3',
-            'valor' => 'required|',
-
-
+            'profissional_id'=>'required',
+            'cliente_id'=>'required',
+            'servico_id'=>'required',
+            'data_hora'=>'required|dateTime',
+            'pagamento'=>'required',
+            'valor'=>'required|decimal:2'
         ];
     }
-
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'sucess' => false,
+            'success' => false,
             'error' => $validator->errors()
         ]));
     }
-    public function messages()
-    {
+    public function messages(){
         return [
-            'profissionais_id.required' => 'o campo nome é obrigatório',
-
-
-            'cliente_id.required' => 'o campo celular é obrigatório',
-
-            'servico_id.required' => 'campo obrigatorio',
-            'data_hora.required' => 'campo obrigatorio',
-            'tipo_pagamento.required' => 'campo obrigatorio',
-            'tipo_pagamento.max' => 'o campo deve conter no maximo 20 caracteres',
-            'tipo_pagamento.min' => 'o campo deve conter no mínimo 3 caracteres',
-            'valor.required' => 'campo obrigatorio',
-
+            'profissional_id.required'=>'O campo profissional é obrigatorio',
+            'cliente_id.required'=>'O campo cliente é obrigatorio',
+            'servico_id.required'=>'O campo serviço é obrigatorio',
+            'data_hora.required'=>"O campo data é obrigatorio",
+            'data_hora.dateTime'=> 'O campo data esta no formato errado',
+            'pagamento.required'=>'O campo forma de pagamento é obrigatorio',
+            'valor.required'=>'O campo valor é obrigatorio',
+            'valor.decimal'=>'O campo valor esta no formato errado'
         ];
     }
 }

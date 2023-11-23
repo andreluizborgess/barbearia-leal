@@ -51,7 +51,7 @@ route::post('profissional',[ProfissionaisController::class, 'cadastroProfissiona
 
 route::post('pesquisa/profissional',[ProfissionaisController::class, 'pesquisaPorNome']);
 
-route::post('exibirProfissionais',[ProfissionaisController::class, 'exibirTodos']);
+route::get('exibirProfissionais',[ProfissionaisController::class, 'exibirTodos']);
 
 route::post('editarProfissionais',[ProfissionaisController::class, 'editarProfissional']);
 
@@ -59,8 +59,7 @@ route::delete('excluirProfissionais/{id}',[ProfissionaisController::class, 'excl
 
 route::post('pesquisarProfissionaisNome',[ProfissionaisController::class, 'pesquisarPorNome']);
 
-//////////////////////////////// AGENDA PORRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
+//////////////////////////////// AGENDA 
 
 
 
